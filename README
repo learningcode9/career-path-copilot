@@ -6,3 +6,48 @@ career-path-copilot/
  ├─ frontend/               → React/Static Web App code
  ├─ docs/                   → Architecture diagrams, screenshots, README guides
  └─ .github/workflows/      → GitHub Actions for CI/CD
+
+
+- **main branch** → collaboration branch, where JSON files for datasets, pipelines, and triggers are stored (source of truth).  
+- **adf_publish branch** → automatically created by ADF when you click *Publish*. Contains ARM templates used for CI/CD deployment.
+
+---
+
+## 🚀 Current Pipelines
+
+- **pl_copy_single_file**
+  - Copies Job Description (JD) and Profile JSONs from `landing/` into `bronze/`.
+  - Parameterized with `p_request_id` so JD + Profile run together for the same request.
+
+---
+
+## ⚡ Triggers
+
+- **trig_landing_bronze**
+  - Blob event trigger that starts the pipeline when a new `.json` file is added to `/landing/jd/`.
+
+---
+
+## 🏗️ Medallion Architecture
+
+This project follows the Medallion data lake pattern:
+
+- **Landing** → Raw uploads (JD & Profile JSONs).  
+- **Bronze** → Ingested data, one-to-one copy from landing.  
+- **Silver** → Cleaned & transformed data (to be built next).  
+- **Curated (Gold)** → Final structured layer for analytics & UI.
+
+---
+
+## 🔗 CI/CD
+
+- Use the **adf_publish** branch for deployments.
+- `ARMTemplateForFactory.json` + `ARMTemplateParametersForFactory.json` enable automated deployment with Azure DevOps or GitHub Actions.
+
+---
+
+## ✅ Next Steps
+
+- Build Databricks notebooks to transform **Bronze → Silver**.
+- Add `skills-matching` logic.
+- Expose curated data for UI via Synapse / SQL Database.
