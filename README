@@ -1,3 +1,27 @@
+# Career Path Copilot 🚀  
+*End-to-end Azure Data Engineering project using Medallion Architecture*
+
+## Introduction  
+This project demonstrates how to build a **Career Path Copilot** — an application that ingests a **Job Description (JD)** and a **Candidate Profile**, then prepares them for **skills matching, gap analysis, and personalized learning plans**.  
+
+It is built on **Azure Data Engineering best practices**, following the **Medallion Architecture (Landing → Bronze → Silver → Gold)**, and is fully automated with **event-driven pipelines** and **GitHub source control**.
+
+## Highlights (TL;DR)  
+- **Architecture:** Medallion pattern — Landing → Bronze → Silver → Gold in ADLS Gen2.  
+- **Ingestion:** ADF pipeline `pl_copy_single_file` moves JD & Profile JSONs from `landing/` to `bronze/`.  
+- **Automation:** Event Grid trigger `trig_landing_bronze` runs automatically when a file lands.  
+- **Parameterization:** `p_request_id` parameter supports single JD+Profile pair or batch mode.  
+- **Parallelism:** JD & Profile copy activities run together to keep requests in sync.  
+- **Security:** Managed Identity + Storage Blob Data Contributor role.  
+- **Source Control:** GitHub integration — `main` (JSON artifacts) and `adf_publish` (ARM templates).  
+- **Next steps:**  
+  - Silver in Databricks (transform, clean, extract skills).  
+  - Gold curated tables for skills matching & learning plan.  
+  - Minimal UI (Azure Static Web Apps + Function).  
+  - CI/CD with GitHub Actions.  
+
+## Repository Structure  
+
 career-path-copilot/
  ├─ infra/                  → IaC (ARM/Bicep/Terraform if you want infra-as-code)
  ├─ adf/                    → Exported ADF pipelines (JSON ARM templates)
