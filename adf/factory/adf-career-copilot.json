@@ -1,0 +1,9 @@
+{
+	"name": "adf-career-copilot",
+	"location": "westus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "6e72acc8-f8df-4c35-829e-c523c0beea46",
+		"tenantId": "da2dc7a7-e81c-4ae8-85ef-1678bba03dda"
+	}
+}

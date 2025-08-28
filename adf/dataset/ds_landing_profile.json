@@ -1,0 +1,19 @@
+{
+	"name": "ds_landing_profile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_apb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "profile",
+				"fileSystem": "landing"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
