@@ -1,0 +1,8 @@
+career-path-copilot/
+ ├─ infra/                  → IaC (ARM/Bicep/Terraform if you want infra-as-code)
+ ├─ adf/                    → Exported ADF pipelines (JSON ARM templates)
+ ├─ databricks/             → Notebooks (PySpark, Delta Live Tables)
+ ├─ functions/              → Azure Functions (API code for frontend/backend glue)
+ ├─ frontend/               → React/Static Web App code
+ ├─ docs/                   → Architecture diagrams, screenshots, README guides
+ └─ .github/workflows/      → GitHub Actions for CI/CD
