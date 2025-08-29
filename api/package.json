@@ -1,11 +1,19 @@
 {
-    "name": "career-path-copilot-api",
+    "name": "career-copilot-api",
+    "version": "1.0.0",
     "private": true,
-    "type": "module",
+    "main": "dist/index.js",
+    "scripts": {
+      "build": "tsc -p tsconfig.json",
+      "start": "npm run build && func start"
+    },
     "dependencies": {
-      "@azure/identity": "^4.4.1",
+      "@azure/functions": "^4.4.0",
       "@azure/storage-blob": "^12.18.0",
-      "busboy": "^1.6.0"
+      "multiparty": "^4.2.3"
+    },
+    "devDependencies": {
+      "typescript": "^5.4.0"
     }
   }
   

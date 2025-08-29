@@ -1,3 +1,27 @@
+
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --noise: radial-gradient(circle at 1px 1px, rgb(255 255 255 / 6%) 1px, transparent 1px) 0 0 / 20px 20px;
+}
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: var(--noise);
+  mix-blend-mode: overlay;
+}
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -65,4 +89,6 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+ 
+
 }
