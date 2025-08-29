@@ -1,0 +1,11 @@
+{
+    "name": "career-path-copilot-api",
+    "private": true,
+    "type": "module",
+    "dependencies": {
+      "@azure/identity": "^4.4.1",
+      "@azure/storage-blob": "^12.18.0",
+      "busboy": "^1.6.0"
+    }
+  }
+  
