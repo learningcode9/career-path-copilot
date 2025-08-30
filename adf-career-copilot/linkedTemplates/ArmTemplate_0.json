@@ -104,7 +104,7 @@
 						"typeProperties": {
 							"variableName": "path",
 							"value": {
-								"value": "@last(split(pipeline().parameters.fileUrl, '/landing/'))\n",
+								"value": "@replace(replace(pipeline().parameters.fileUrl, '\\r', ''), '\\n', '')\n",
 								"type": "Expression"
 							}
 						}
@@ -176,7 +176,7 @@
 						"typeProperties": {
 							"variableName": "destPath",
 							"value": {
-								"value": "@concat(variables('subfolder'), '/', variables('fileName'))\n",
+								"value": "@replace(replace(trim(concat(variables('subfolder'), '/', variables('fileName'))), '\\n', ''), '\\r', '')\n\n",
 								"type": "Expression"
 							}
 						}
@@ -226,7 +226,7 @@
 								"parameters": {
 									"p_container": "landing",
 									"p_path": {
-										"value": "@variables('path')",
+										"value": "@replace(replace(trim(variables('path')), '\\n', ''), '\\r', '')\n",
 										"type": "Expression"
 									}
 								}
