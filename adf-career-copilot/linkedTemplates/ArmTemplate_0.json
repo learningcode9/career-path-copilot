@@ -226,10 +226,7 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"p_container": "landing",
-									"p_path": {
-										"value": "@variables('destPath')",
-										"type": "Expression"
-									}
+									"p_path": "@variables('path')"
 								}
 							}
 						],
