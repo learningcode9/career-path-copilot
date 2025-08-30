@@ -16,6 +16,12 @@
 		},
 		"trg_landing_blob_created_properties_typeProperties_scope": {
 			"value": "/subscriptions/7dde6a16-56b7-452e-b264-eff27a033c50/resourceGroups/rg-career-copilot/providers/Microsoft.Storage/storageAccounts/stcareercc"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
 		}
 	}
 }
