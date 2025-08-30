@@ -1,0 +1,27 @@
+{
+	"name": "ds_binary_adls",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_container": {
+				"type": "string"
+			},
+			"p_path": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "@last(split(dataset().p_path, '/'))",
+				"folderPath": "@substring(dataset().p_path, 0, lastIndexOf(dataset().p_path, '/'))",
+				"fileSystem": "@dataset().p_container"
+			}
+		}
+	}
+}

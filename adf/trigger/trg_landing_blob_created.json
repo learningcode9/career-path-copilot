@@ -1,0 +1,27 @@
+{
+	"name": "trg_landing_blob_created",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_landing_to_bronze",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"fileUrl": "@triggerBody().data.url"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/landing/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/7dde6a16-56b7-452e-b264-eff27a033c50/resourceGroups/rg-career-copilot/providers/Microsoft.Storage/storageAccounts/stcareercc",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
