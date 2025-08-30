@@ -1,2 +1,10 @@
 api/local.settings.json
 api/node_modules/
+# Azurite local storage files
+AzuriteConfig
+__azurite_db_*
+__blobstorage__/
+
+AzuriteConfig
+__azurite_db_*
+__blobstorage__/
