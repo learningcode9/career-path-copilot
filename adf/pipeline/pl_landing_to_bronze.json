@@ -20,7 +20,7 @@
 				}
 			},
 			{
-				"name": "fileName",
+				"name": "set requestId",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -37,10 +37,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "fileName",
-					"value": {
-						"value": "@trim(last(split(variables('path'), '/')))\n",
-						"type": "Expression"
-					}
+					"value": "@replace(last(split(pipeline().parameters.fileUrl, '/')), '.json', '')\n"
 				}
 			},
 			{
@@ -48,7 +45,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "fileName",
+						"activity": "set requestId",
 						"dependencyConditions": [
 							"Succeeded"
 						]
