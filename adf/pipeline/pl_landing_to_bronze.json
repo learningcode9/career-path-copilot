@@ -115,7 +115,8 @@
 						"type": "BinarySource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"recursive": true
+							"recursive": true,
+							"deleteFilesAfterCompletion": false
 						},
 						"formatSettings": {
 							"type": "BinaryReadSettings"
@@ -135,7 +136,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"p_container": "landing",
-							"p_path": "@last(   split(     replace(       replace(pipeline().parameters.fileUrl, decodeUriComponent('%0A'), ''),       decodeUriComponent('%0D'),       ''     ),     '/landing/'   ) )"
+							"p_path": "@concat(   if(contains(pipeline().parameters.fileUrl, '/landing/jd/'), 'jd/', 'profile/'),   replace(     replace(trim(last(split(pipeline().parameters.fileUrl, '/'))), decodeUriComponent('%0A'), ''),     decodeUriComponent('%0D'),     ''   ) )"
 						}
 					}
 				],
@@ -145,7 +146,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"p_container": "bronze",
-							"p_path": "@last(   split(     replace(       replace(pipeline().parameters.fileUrl, decodeUriComponent('%0A'), ''),       decodeUriComponent('%0D'),       ''     ),     '/landing/'   ) )"
+							"p_path": "@concat(   if(contains(pipeline().parameters.fileUrl, '/landing/jd/'), 'jd/', 'profile/'),   replace(     replace(trim(last(split(pipeline().parameters.fileUrl, '/'))), decodeUriComponent('%0A'), ''),     decodeUriComponent('%0D'),     ''   ) )"
 						}
 					}
 				]
