@@ -1,115 +1,6 @@
 {
 	"name": "pl_landing_to_bronze",
 	"properties": {
-		"activities": [
-			{
-				"name": "Set path",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "path",
-					"value": "@{substring(pipeline().parameters.fileUrl, add(indexOf(pipeline().parameters.fileUrl, '/landing/'), 9))}\n"
-				}
-			},
-			{
-				"name": "Set fileName",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "fileName",
-					"value": "@{last(split(variables('path'), '/'))}\n"
-				}
-			},
-			{
-				"name": "Set subfolder",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "subfolder",
-					"value": "@{split(variables('path'), '/')[0]}\n"
-				}
-			},
-			{
-				"name": "Set destPath",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "destPath",
-					"value": "@{concat('bronze/', variables('subfolder'), '/ingest_date=', formatDateTime(utcNow(), 'yyyy-MM-dd'), '/', variables('fileName'))}\n"
-				}
-			},
-			{
-				"name": "Copy_from_landing_to_bronze",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "BinarySource",
-						"storeSettings": {
-							"type": "AzureBlobFSReadSettings",
-							"recursive": true
-						},
-						"formatSettings": {
-							"type": "BinaryReadSettings"
-						}
-					},
-					"sink": {
-						"type": "BinarySink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						}
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "ds_binary_adls",
-						"type": "DatasetReference",
-						"parameters": {
-							"p_container": "@dataset().p_container"
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "ds_binary_adls",
-						"type": "DatasetReference",
-						"parameters": {
-							"p_container": "bronze",
-							"p_path": "@variables('destPath')"
-						}
-					}
-				]
-			}
-		],
 		"parameters": {
 			"fileUrl": {
 				"type": "string"
@@ -123,9 +14,6 @@
 				"type": "String"
 			},
 			"subfolder": {
-				"type": "String"
-			},
-			"destPath": {
 				"type": "String"
 			}
 		},
