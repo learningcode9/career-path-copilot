@@ -225,10 +225,7 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"p_container": "landing",
-									"p_path": {
-										"value": "@replace(replace(trim(last(split(pipeline().parameters.fileUrl, '/landing/'))), '\\n', ''), '\\r', '')\n\n",
-										"type": "Expression"
-									}
+									"p_path": "@last(split(pipeline().parameters.fileUrl, '/'))"
 								}
 							}
 						],
