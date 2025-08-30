@@ -136,7 +136,7 @@
 						"parameters": {
 							"p_container": "landing",
 							"p_path": {
-								"value": "@replace(replace(trim(last(split(pipeline().parameters.fileUrl,'/landing/'))), '\\n', ''), '\\r', '')\n",
+								"value": "@replace(replace(trim(concat(variables('subfolder'), '/', variables('fileName'))), '\\n', ''), '\\r', '')\n\n",
 								"type": "Expression"
 							}
 						}
