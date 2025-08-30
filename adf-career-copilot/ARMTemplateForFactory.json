@@ -233,11 +233,11 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": {
-							"value": "@last(split(dataset().p_path, '/'))",
+							"value": "@{last(split(dataset().p_path, '/'))}\n",
 							"type": "Expression"
 						},
 						"folderPath": {
-							"value": "@substring(dataset().p_path, 0, lastIndexOf(dataset().p_path, '/'))",
+							"value": "@{if(contains(dataset().p_path, '/'), substring(dataset().p_path, 0, lastIndexOf(dataset().p_path, '/')), '')}\n",
 							"type": "Expression"
 						},
 						"fileSystem": {
