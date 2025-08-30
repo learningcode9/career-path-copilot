@@ -29,55 +29,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/ls_adls')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('ls_adls_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('ls_adls_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_binary_adls')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_adls",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"p_container": {
-						"type": "string"
-					},
-					"p_path": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "@last(split(dataset().p_path, '/'))",
-						"folderPath": "@substring(dataset().p_path, 0, lastIndexOf(dataset().p_path, '/'))",
-						"fileSystem": "@dataset().p_container"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_adls')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/pl_landing_to_bronze')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -118,7 +69,10 @@
 						"userProperties": [],
 						"typeProperties": {
 							"variableName": "fileName",
-							"value": "@last(split(variables('path'), '/'))\n"
+							"value": {
+								"value": "@last(split(variables('path'), '/'))\n",
+								"type": "Expression"
+							}
 						}
 					},
 					{
@@ -139,7 +93,10 @@
 						"userProperties": [],
 						"typeProperties": {
 							"variableName": "subfolder",
-							"value": "@first(split(variables('path'), '/'))\n"
+							"value": {
+								"value": "@first(split(variables('path'), '/'))\n",
+								"type": "Expression"
+							}
 						}
 					},
 					{
@@ -160,7 +117,10 @@
 						"userProperties": [],
 						"typeProperties": {
 							"variableName": "destPath",
-							"value": "@concat(variables('subfolder'), '/', variables('fileName'))\n"
+							"value": {
+								"value": "@concat(variables('subfolder'), '/', variables('fileName'))\n",
+								"type": "Expression"
+							}
 						}
 					},
 					{
@@ -249,6 +209,64 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_binary_adls')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_binary_adls')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_adls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"p_container": {
+						"type": "string"
+					},
+					"p_path": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@last(split(dataset().p_path, '/'))",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@substring(dataset().p_path, 0, lastIndexOf(dataset().p_path, '/'))",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().p_container",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_adls')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_adls')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ls_adls_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('ls_adls_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/trg_landing_blob_created')]",

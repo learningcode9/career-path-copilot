@@ -67,9 +67,18 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "@last(split(dataset().p_path, '/'))",
-						"folderPath": "@substring(dataset().p_path, 0, lastIndexOf(dataset().p_path, '/'))",
-						"fileSystem": "@dataset().p_container"
+						"fileName": {
+							"value": "@last(split(dataset().p_path, '/'))",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@substring(dataset().p_path, 0, lastIndexOf(dataset().p_path, '/'))",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().p_container",
+							"type": "Expression"
+						}
 					}
 				}
 			},
@@ -118,7 +127,10 @@
 						"userProperties": [],
 						"typeProperties": {
 							"variableName": "fileName",
-							"value": "@last(split(variables('path'), '/'))\n"
+							"value": {
+								"value": "@last(split(variables('path'), '/'))\n",
+								"type": "Expression"
+							}
 						}
 					},
 					{
@@ -139,7 +151,10 @@
 						"userProperties": [],
 						"typeProperties": {
 							"variableName": "subfolder",
-							"value": "@first(split(variables('path'), '/'))\n"
+							"value": {
+								"value": "@first(split(variables('path'), '/'))\n",
+								"type": "Expression"
+							}
 						}
 					},
 					{
@@ -160,7 +175,10 @@
 						"userProperties": [],
 						"typeProperties": {
 							"variableName": "destPath",
-							"value": "@concat(variables('subfolder'), '/', variables('fileName'))\n"
+							"value": {
+								"value": "@concat(variables('subfolder'), '/', variables('fileName'))\n",
+								"type": "Expression"
+							}
 						}
 					},
 					{
