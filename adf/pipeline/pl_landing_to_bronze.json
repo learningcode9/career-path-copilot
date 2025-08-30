@@ -146,7 +146,10 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"p_container": "bronze",
-							"p_path": "@concat(     'bronze/',     trim(last(split(pipeline().parameters.fileUrl,'/'))) )"
+							"p_path": {
+								"value": "@concat(\n    'bronze/',\n    trim(last(split(pipeline().parameters.fileUrl,'/')))\n)",
+								"type": "Expression"
+							}
 						}
 					}
 				]
