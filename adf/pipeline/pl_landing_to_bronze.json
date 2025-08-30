@@ -13,7 +13,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "path",
-					"value": "@concat(\n    if(contains(pipeline().parameters.fileUrl,'/landing/jd/'),'jd','profile'),\n    '/',\n    trim(last(split(pipeline().parameters.fileUrl,'/')))\n)"
+					"value": "@last(split(string(pipeline().parameters.fileUrl), 'landing/'))\n"
 				}
 			},
 			{
@@ -34,10 +34,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "fileName",
-					"value": {
-						"value": "@last(split(variables('path'), '/'))\n",
-						"type": "Expression"
-					}
+					"value": "@trim(last(split(variables('path'), '/')))\n"
 				}
 			},
 			{
@@ -58,10 +55,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "subfolder",
-					"value": {
-						"value": "@first(split(variables('path'), '/'))\n",
-						"type": "Expression"
-					}
+					"value": "@trim(first(split(variables('path'), '/')))\n"
 				}
 			},
 			{
@@ -82,10 +76,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "destPath",
-					"value": {
-						"value": "@concat(variables('subfolder'), '/', variables('fileName'))\n",
-						"type": "Expression"
-					}
+					"value": "@concat(variables('subfolder'), '/', variables('fileName'))\n"
 				}
 			},
 			{
@@ -133,7 +124,10 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"p_container": "landing",
-							"p_path": "@variables('path')"
+							"p_path": {
+								"value": "@variables('destPath')",
+								"type": "Expression"
+							}
 						}
 					}
 				],
