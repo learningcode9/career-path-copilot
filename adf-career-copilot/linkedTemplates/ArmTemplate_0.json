@@ -94,7 +94,10 @@
 						"userProperties": [],
 						"typeProperties": {
 							"variableName": "path",
-							"value": "@substring(pipeline().parameters.fileUrl, add(indexOf(pipeline().parameters.fileUrl, '/landing/'), 9))\n"
+							"value": {
+								"value": "@last(split(pipeline().parameters.fileUrl, '/landing/'))\n\n",
+								"type": "Expression"
+							}
 						}
 					},
 					{
@@ -268,6 +271,7 @@
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
 					"blobPathBeginsWith": "/landing/blobs/",
+					"blobPathEndsWith": ".json",
 					"ignoreEmptyBlobs": true,
 					"scope": "[parameters('trg_landing_blob_created_properties_typeProperties_scope')]",
 					"events": [
