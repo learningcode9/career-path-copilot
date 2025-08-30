@@ -225,7 +225,7 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"p_container": "landing",
-									"p_path": "@replace(replace(trim(last(split(pipeline().parameters.fileUrl, '/landing/'))), '\\n', ''), '\\r', '')"
+									"p_path": "@last(   split(     replace(       replace(pipeline().parameters.fileUrl, decodeUriComponent('%0A'), ''),       decodeUriComponent('%0D'),       ''     ),     '/landing/'   ) )"
 								}
 							}
 						],
@@ -235,7 +235,7 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"p_container": "bronze",
-									"p_path": "@replace(replace(trim(last(split(pipeline().parameters.fileUrl, '/landing/'))), '\\n', ''), '\\r', '')"
+									"p_path": "@last(   split(     replace(       replace(pipeline().parameters.fileUrl, decodeUriComponent('%0A'), ''),       decodeUriComponent('%0D'),       ''     ),     '/landing/'   ) )"
 								}
 							}
 						]
