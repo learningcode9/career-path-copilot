@@ -137,7 +137,7 @@
 						"parameters": {
 							"p_container": "landing",
 							"p_path": {
-								"value": "jd/910d90d4-1e60-4542-b3f3-9ff9e3369ab6.json",
+								"value": "profile/910d90d4-1e60-4542-b3f3-9ff9e3369ab6.json",
 								"type": "Expression"
 							}
 						}
