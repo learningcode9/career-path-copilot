@@ -154,7 +154,8 @@
 		],
 		"parameters": {
 			"fileUrl": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "@triggerBody().url"
 			}
 		},
 		"variables": {

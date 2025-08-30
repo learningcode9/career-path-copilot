@@ -16,7 +16,7 @@
 		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
-			"blobPathBeginsWith": "/landing/blobs/",
+			"blobPathBeginsWith": "/landing/blobs/blobServices/default/containers/landing/blobs/",
 			"blobPathEndsWith": ".json",
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/7dde6a16-56b7-452e-b264-eff27a033c50/resourceGroups/rg-career-copilot/providers/Microsoft.Storage/storageAccounts/stcareercc",
