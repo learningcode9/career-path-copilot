@@ -167,7 +167,7 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"p_container": "landing",
-									"p_path": "@trim(last(split(pipeline().parameters.fileUrl, '/')), '/')"
+									"p_path": "@last(split(pipeline().parameters.fileUrl, '/'))"
 								}
 							}
 						],
