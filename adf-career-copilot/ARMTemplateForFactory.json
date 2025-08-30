@@ -46,7 +46,7 @@
 						"typeProperties": {
 							"variableName": "path",
 							"value": {
-								"value": "@last(split(pipeline().parameters.fileUrl, '/landing/'))\n\n",
+								"value": "@last(split(pipeline().parameters.fileUrl, '/landing/'))\n",
 								"type": "Expression"
 							}
 						}
