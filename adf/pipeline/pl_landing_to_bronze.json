@@ -83,7 +83,7 @@
 				"typeProperties": {
 					"variableName": "destPath",
 					"value": {
-						"value": "@concat(variables('subfolder'), '/', variables('fileName'))\n",
+						"value": "@replace(replace(trim(concat(variables('subfolder'), '/', variables('fileName'))), '\\n', ''), '\\r', '')\n\n",
 						"type": "Expression"
 					}
 				}
