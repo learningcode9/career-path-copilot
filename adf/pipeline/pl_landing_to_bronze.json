@@ -13,7 +13,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "path",
-					"value": "@last(split(pipeline().parameters.fileUrl, '/landing/'))\n"
+					"value": {
+						"value": "@last(split(pipeline().parameters.fileUrl, '/landing/'))\n",
+						"type": "Expression"
+					}
 				}
 			},
 			{
@@ -91,7 +94,14 @@
 			{
 				"name": "Copy_landing_bronze",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set destPath",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
