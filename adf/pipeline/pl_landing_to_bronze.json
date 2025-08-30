@@ -13,10 +13,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "path",
-					"value": {
-						"value": "@last(split(pipeline().parameters.fileUrl, '/landing/'))\n",
-						"type": "Expression"
-					}
+					"value": "@replace(replace(pipeline().parameters.fileUrl, '\\r', ''), '\\n', '')\n"
 				}
 			},
 			{
