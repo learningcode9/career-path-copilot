@@ -46,7 +46,7 @@
 						"typeProperties": {
 							"variableName": "path",
 							"value": {
-								"value": "@trim(\n  replace(\n    replace(\n      last(split( last(split(pipeline().parameters.fileUrl, '/landing/')), 'landing/' )),\n      '\\r',''\n    ),\n    '\\n',''\n  )\n)\n\n",
+								"value": "@last(split(string(pipeline().parameters.fileUrl), 'landing/'))\n",
 								"type": "Expression"
 							}
 						}
@@ -70,7 +70,7 @@
 						"typeProperties": {
 							"variableName": "fileName",
 							"value": {
-								"value": "@last(split(variables('path'), '/'))\n",
+								"value": "@trim(last(split(variables('path'), '/')))\n",
 								"type": "Expression"
 							}
 						}
@@ -94,7 +94,7 @@
 						"typeProperties": {
 							"variableName": "subfolder",
 							"value": {
-								"value": "@first(split(variables('path'), '/'))\n",
+								"value": "@trim(first(split(variables('path'), '/')))\n",
 								"type": "Expression"
 							}
 						}
@@ -168,7 +168,10 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"p_container": "landing",
-									"p_path": "@variables('path')"
+									"p_path": {
+										"value": "@variables('destPath')",
+										"type": "Expression"
+									}
 								}
 							}
 						],
@@ -235,11 +238,11 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": {
-							"value": "@{last(split(dataset().p_path, '/'))}\n",
+							"value": "@last(split(dataset().p_path, '/'))",
 							"type": "Expression"
 						},
 						"folderPath": {
-							"value": "@{if(contains(dataset().p_path, '/'), substring(dataset().p_path, 0, lastIndexOf(dataset().p_path, '/')), '')}\n",
+							"value": "@substring(dataset().p_path, 0, lastIndexOf(dataset().p_path, '/'))",
 							"type": "Expression"
 						},
 						"fileSystem": {
