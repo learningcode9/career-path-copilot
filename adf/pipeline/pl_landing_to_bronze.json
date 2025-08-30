@@ -136,10 +136,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"p_container": "landing",
-							"p_path": {
-								"value": "profile/910d90d4-1e60-4542-b3f3-9ff9e3369ab6.json",
-								"type": "Expression"
-							}
+							"p_path": "@variables('path')"
 						}
 					}
 				],
