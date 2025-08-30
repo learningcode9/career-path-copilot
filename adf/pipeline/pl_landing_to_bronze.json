@@ -146,10 +146,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"p_container": "bronze",
-							"p_path": {
-								"value": "@concat(\n    if(contains(pipeline().parameters.fileUrl,'/landing/jd/'),'jd','profile'),\n    '/',\n    trim(last(split(pipeline().parameters.fileUrl,'/')))\n)",
-								"type": "Expression"
-							}
+							"p_path": "@concat(     'bronze/',     trim(last(split(pipeline().parameters.fileUrl,'/'))) )"
 						}
 					}
 				]
