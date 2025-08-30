@@ -167,7 +167,7 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"p_container": "landing",
-									"p_path": "@replace(   replace(     replace(       replace(         last(split(pipeline().parameters.fileUrl, '/')),         '/',         ''       ),       '\\n',       ''     ),     '\\r',     ''   ),   ' ',   '' )"
+									"p_path": "@'7e043d32-e150-4281-be41-805a58b7858c.json'"
 								}
 							}
 						],
