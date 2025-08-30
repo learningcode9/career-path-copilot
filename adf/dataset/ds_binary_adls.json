@@ -19,7 +19,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@last(split(dataset().p_path, '/'))",
+					"value": "@{last(split(dataset().p_path, '/'))}\n",
 					"type": "Expression"
 				},
 				"folderPath": {
