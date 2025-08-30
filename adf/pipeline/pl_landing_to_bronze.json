@@ -13,10 +13,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "path",
-					"value": {
-						"value": "@last(split(pipeline().parameters.fileUrl, '/landing/'))\n\n",
-						"type": "Expression"
-					}
+					"value": "@last(split(pipeline().parameters.fileUrl, '/landing/'))\n"
 				}
 			},
 			{
@@ -37,7 +34,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "fileName",
-					"value": "@last(split(variables('path'), '/'))\n"
+					"value": {
+						"value": "@last(split(variables('path'), '/'))\n",
+						"type": "Expression"
+					}
 				}
 			},
 			{
@@ -58,7 +58,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "subfolder",
-					"value": "@first(split(variables('path'), '/'))\n"
+					"value": {
+						"value": "@first(split(variables('path'), '/'))\n",
+						"type": "Expression"
+					}
 				}
 			},
 			{
@@ -79,7 +82,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "destPath",
-					"value": "@concat(variables('subfolder'), '/', variables('fileName'))\n"
+					"value": {
+						"value": "@concat(variables('subfolder'), '/', variables('fileName'))\n",
+						"type": "Expression"
+					}
 				}
 			},
 			{
