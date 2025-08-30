@@ -135,7 +135,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"p_container": "landing",
-							"p_path": "@last(split(pipeline().parameters.fileUrl, '/'))"
+							"p_path": "@replace(   replace(     last(split(pipeline().parameters.fileUrl, '/')),     '/',     ''   ),   ' ',   '' )"
 						}
 					}
 				],
