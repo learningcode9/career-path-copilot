@@ -135,10 +135,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"p_container": "landing",
-							"p_path": {
-								"value": "jd/7e043d32-e150-4281-be41-805a58b7858c.json",
-								"type": "Expression"
-							}
+							"p_path": "@replace(replace(trim(variables('path')), '\\n', ''), '\\r', '')"
 						}
 					}
 				],
@@ -148,10 +145,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"p_container": "bronze",
-							"p_path": {
-								"value": "@variables('destPath')",
-								"type": "Expression"
-							}
+							"p_path": "@replace(replace(trim(concat(variables('subfolder'), '/', variables('fileName'))), '\\n', ''), '\\r', '')"
 						}
 					}
 				]
